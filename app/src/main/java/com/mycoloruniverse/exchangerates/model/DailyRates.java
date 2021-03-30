@@ -68,40 +68,9 @@ public class DailyRates {
         Timestamp = timestamp;
     }
 
-    /*
-    public List<CurrencyRate> getRates() {
-        return rates;
-    }
-
-    public void setRates(List<CurrencyRate> rates) {
-        this.rates = rates;
-    }
-
-    public JsonObject getValute() {
-        return Valute;
-    }
-
-    public void setValute(JsonObject valute) {
-        Valute = valute;
-        // todo: переделать на GsonConverter
-        parseValute();
-    }
-
-    public void parseValute() {
-        Gson g = new Gson();
-        Type type = new TypeToken<Map<String, CurrencyRate>>(){}.getType();
-        Map<String, CurrencyRate> myMap = g.fromJson(this.Valute, type);
-
-        this.rates.addAll(myMap.values());
-        Log.d("TAG", "Размер "+myMap.size());
-    }
-
-     */
-
     public Map<String, CurrencyRate> getValute() {
         return Valute;
     }
-
 
     public void setValute(Map<String, CurrencyRate> valute) {
         Valute = valute;

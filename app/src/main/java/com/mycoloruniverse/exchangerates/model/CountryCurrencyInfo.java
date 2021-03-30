@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Vector;
 
 public class CountryCurrencyInfo {
-    // private static final CountryCurrencyInfo instance = new CountryCurrencyInfo();
     private static CountryCurrencyInfo instance;
     private final Map<String, Currency> currencyMap = new ArrayMap<>(); // Список валют
     private final HashMap<String, Country> countryMap = new HashMap<>(); // Список стран по коду страны
@@ -48,7 +47,7 @@ public class CountryCurrencyInfo {
 
             // код валюты по коду страны
             if (currencyOfCountryMap.containsKey(locale.getCountry())) {
-                currencyOfCountryMap.put(locale.getCountry(), currency.getCurrencyCode());
+                currencyOfCountryMap.put(locale.getISO3Country(), currency.getCurrencyCode());
             }
 
             // Создаем объект страны
@@ -79,12 +78,16 @@ public class CountryCurrencyInfo {
             }
 
             // кладем список стран обратно
-            // countryListByCurrencyMap.put(locale.getCountry(), countryList);
             countryListByCurrencyMap.put(currency.getCurrencyCode(), countryList);
 
             if (currencyMap.containsKey(currency.getCurrencyCode())) continue;
             currencyMap.put(currency.getCurrencyCode(), currency);
         }
+
+
+
+        // TODO: Currency.getAvailableCurrencies()
+
     }
 
     public Map<String, Currency> getCurrencyMap () {

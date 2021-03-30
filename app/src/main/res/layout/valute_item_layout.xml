@@ -30,15 +30,20 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/space8"
         tools:text="RUR"
+        style="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintStart_toEndOf="@+id/tvNominal"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvNominal"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space8"
+        android:paddingTop="@dimen/space8"
+        android:paddingBottom="@dimen/space8"
+        android:paddingLeft="@dimen/space8"
         tools:text="1"
+        android:gravity="right"
+        style="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,6 +53,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/space8"
         tools:text="name"
+        style="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toStartOf="@+id/tvPrevious"
         app:layout_constraintStart_toEndOf="@+id/tvCharCode"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,6 +73,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/space8"
         tools:text="44.2354"
+        style="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

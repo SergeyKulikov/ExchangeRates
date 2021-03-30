@@ -3,6 +3,7 @@ package com.mycoloruniverse.exchangerates.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.icu.util.Currency;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +24,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class RatesAdapter extends RecyclerView.Adapter<RatesAdapter.RatesViewHolder> {
-    // private DailyRates dailyRates = new DailyRates();
-    private List<CurrencyRate> dailyRates = new ArrayList<>();
-    private Context context;
-    private CountryCurrencyInfo countryCurrencyInfo = CountryCurrencyInfo.getInstance();
+    private final List<CurrencyRate> dailyRates = new ArrayList<>();
+    private final CountryCurrencyInfo countryCurrencyInfo = CountryCurrencyInfo.getInstance();
 
     @NonNull
     @Override
     public RatesAdapter.RatesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.valute_item_layout, parent, false);
-        context = view.getContext();
 
         return new RatesAdapter.RatesViewHolder(view);
     }
@@ -51,13 +49,24 @@ public class RatesAdapter extends RecyclerView.Adapter<RatesAdapter.RatesViewHol
         holder.tvValue.setText(String.format(Locale.getDefault(), "%.4f", currencyRate.getValue()));
         holder.tvPrevious.setText(String.format(Locale.getDefault(), "%.4f", currencyRate.getPrevious()));
 
-        Currency currency = Currency.getInstance(currencyRate.getCharCode());
+        Currency currency = countryCurrencyInfo.getCurrencyMap().get(currencyRate.getCharCode());
+
+
+
+        //Currency currency = Currency.getInstance(currencyRate.getCharCode());
+
+        if (currency == null) { // для валюты, которая не связана со странами
+            // Log.e("TAG", "Не найдена валюта: "+currencyRate.getCharCode());
+            currency = Currency.getInstance(currencyRate.getCharCode());
+
+            // Log.e("TAG", "Не найдена валюта: "+currencyRate.getCharCode()+" : "+locale.getDisplayCountry(Locale.getDefault()));
+        }
+
         String currencyCode = currency.getCurrencyCode();
         String displayName = currency.getDisplayName();
         String symbol = currency.getSymbol();
 
-
-        if (displayName.equals(currencyCode)) {
+        if (displayName.equals(currencyCode)) { // проблема белорусского рубля
             holder.tvName.setText(currencyRate.getName());
         } else {
             holder.tvName.setText(displayName);

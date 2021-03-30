@@ -53,6 +53,15 @@ public class RatesActivityPresenter {
                         // 643 код = RUB (рубль РФ)
                         dailyRates.getValute().put("RUB", new CurrencyRate("R01", "643", "RUB", 1, "Российский рубль",1,1 ));
 
+                        // Проблема неверной валюты почему-то касается и белорусского рубля.
+                        // В российском справочнике используется его старый буквеный код
+                        dailyRates.getValute().get("BYN").setCharCode("BYR");
+                        dailyRates.getValute().put("BYN", dailyRates.getValute().get("BYN"));
+
+                        /*
+                        dailyRates.getValute().get("TJR").setCharCode("TJS");
+                        dailyRates.getValute().put("TJS", dailyRates.getValute().get("TJS"));
+*/
                         ratesView.getAdapter().setRates(dailyRates);
                         ratesView.getAdapter().notifyDataSetChanged();
 
