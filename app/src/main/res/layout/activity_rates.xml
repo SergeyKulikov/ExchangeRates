@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/space8"
+    tools:context=".view.RatesActivity">
+
+    <LinearLayout
+        android:id="@+id/filter_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="@dimen/space2"
+        android:orientation="vertical"
+        android:padding="@dimen/space16"
+        android:minWidth="200dp"
+        android:maxWidth="300dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvCountryLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/country" />
+
+        <Spinner
+            android:id="@+id/spCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select"
+            android:padding="@dimen/space16" />
+        <!--android:spinnerMode="dialog"-->
+
+        <TextView
+            android:id="@+id/tvCurrencyLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currency" />
+
+        <Spinner
+            android:id="@+id/spCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space16" />
+
+        <Button
+            android:id="@+id/btnFilterCommit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/commit"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCurrencyRatesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
